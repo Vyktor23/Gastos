@@ -1,0 +1,45 @@
+
+
+
+
+body{
+  background-color:ivory;
+}
+.contenedor_principal{
+  text-align: center;
+  background-color: cornsilk;
+  border: 2px solid red;
+  width: auto;
+  margin: auto;
+  font-size: 20px;
+}
+
+.contenedor_secundario{
+border: 2px solid blue;
+display: flex;
+gap: 50%;
+}
+
+.añade_gastos{
+  border: 2px solid green;
+  gap: 40px;
+}
+
+.listado{
+  border: 2px solid black;
+}
+
+.dinero{
+  border: 2px solid brown;
+}
+
+
+
+
+
+
+
+
+
+
+
