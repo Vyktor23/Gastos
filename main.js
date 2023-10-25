@@ -47,18 +47,43 @@ function gastos(){
   mostrar_tarjeta()
 }
 
+// function mostrar_tarjeta() {
+//   presupuestos.forEach((item,index)=>{
+//     let tr = document.createElement('tr');
+//     let nombre = document.createElement('td');
+//     let valor = document.createElement('td');
+//     let borrar = document.createElement('td');
+//     let borrar_boton = document.createElement('button');
+
+//     borrar_boton.textContent = '❌';
+//     borrar_boton.addEventListener('click',()=>{
+//       borrar_tarjeta(index);
+//     })
+
+//     nombre.textContent = item.gastos;
+//     valor.textContent = item.valor;
+
+//     borrar.appendChild(borrar_boton);
+//     tr.appendChild(nombre);
+//     tr.appendChild(valor);
+//     tr.appendChild(borrar);
+
+//     document.getElementById('tarjetas').appendChild(tr);
+//   })}
+
 function mostrar_tarjeta() {
-  presupuestos.forEach((item,index)=>{
+  presupuestos.forEach((item, index) => {
     let tr = document.createElement('tr');
     let nombre = document.createElement('td');
     let valor = document.createElement('td');
     let borrar = document.createElement('td');
     let borrar_boton = document.createElement('button');
 
-    borrar_boton.textContent = 'Eliminar';
-    borrar_boton.addEventListener('click',()=>{
+    borrar_boton.textContent = '❌';
+    borrar_boton.className = 'borrar-button'; // Agregar la clase 'borrar-button'
+    borrar_boton.addEventListener('click', () => {
       borrar_tarjeta(index);
-    })
+    });
 
     nombre.textContent = item.gastos;
     valor.textContent = item.valor;
@@ -69,15 +94,15 @@ function mostrar_tarjeta() {
     tr.appendChild(borrar);
 
     document.getElementById('tarjetas').appendChild(tr);
-  })}
+  });
+}
 
-  function borrar_tarjeta(index){
-    let i = index
-    presupuestos.splice(i,1);
-
-    document.getElementById('tarjeta').innerHTML="";
-
-    mostrar_tarjeta()
+  function borrar_tarjeta(index) {
+    presupuestos.splice(index, 1);
+  
+    document.getElementById('tarjetas').innerHTML = ""; // Cambiar 'tarjeta' a 'tarjetas'
+  
+    mostrar_tarjeta();
   }
 
 
