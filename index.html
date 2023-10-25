@@ -1,40 +1,40 @@
-<! DOCTYPE html>
-<html lang="es">
-<cabeza>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./styles.css">
-  <script src="./main.js"></script >
+  <script src="./main.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro Gastos</title>
-</cabeza>
-<cuerpo>
+</head>
+<body>
   <div class="contenedor_principal">
-    <h1>Gasto Semanal</h1>
-  <div class="añade_gastos">
+    <h1>Control de Gastos</h1>
+    <div class="añade_gastos">
       <h2>Añade tus gastos aquí</h2>
-      <forma>
-          <label for="gasto">Gasto:</label><br >
-          <input type="text" id="gasto" placeholder="Nombre Gasto" name="gasto"><br>
-          <label for="cantidad">Cantidad:</label><br >
-          <input type="number" id="cantidad" placeholder="Cantidad en $" name="cantidad"><br>
-          <input type="button" value="Agregar" onclick="guardar()">
-      </forma>
-
+      <form>
+        <label for="gasto">Gasto:</label><br>
+        <input type="text" id="gasto" placeholder="Nombre Gasto" name="gasto"><br>
+        <label for="cantidad">Cantidad:</label><br>
+        <input type="number" id="cantidad" placeholder="Cantidad en $" name="cantidad"><br>
+        <input type="button" value="Agregar" onclick="guardar()">
+      </form>
       <div class="contenedor_secundario">
         <div class="dinero">
-          <mesa>
+          <table>
             <thead>
             </thead>
             <tbody id="tarjetas">
             </tbody>
-          </mesa>
-          <label for="presupuesto">Presupuesto:</label >
+          </table>
+          <label for="presupuesto">Presupuesto:</label>
           <input type="text" id="presupuesto" placeholder="$$$" name="presupuesto" onkeyup="if(event.keyCode===13) verificar_presupuesto()">
-          <label for="restante">Restante:</label >
+          <label for="restante">Restante:</label>
           <input type="text" id="restante" placeholder="$$$" name="restante">
-        </Div>
-      </Div>
-    </Div>
-  </cuerpo>
-  </.html>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
