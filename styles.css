@@ -1,8 +1,4 @@
-
-
-
-
-body{
+/* body{
   background-color:ivory;
 }
 .contenedor_principal{
@@ -31,15 +27,154 @@ gap: 50%;
 
 .dinero{
   border: 2px solid brown;
+} */
+
+
+
+
+
+
+body {
+  background-image: url('https://www.xtrafondos.com/wallpapers/degradado-difuminado-naranja-7945.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+.contenedor_principal {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  padding: 20px;
+  overflow: hidden;
+  background-color: #ffffffe7;
+  border-radius: 10px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 }
 
 
 
 
+h1, h2 {
+  color: #333;
+}
+
+.añade_gastos {
+  background-color: #ffffff00;
+  padding: 20px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+form {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+input[type="text"], input[type="number"] {
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="button"] {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background-color: #26b177;
+}
+
+.contenedor_secundario {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listado, .dinero {
+  flex: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #00000036;
+  padding: 10px;
+  text-align: center;
+}
 
 
+h1 {
+  font-size: 3rem;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
 
+h2 {
+  font-size: 2rem;
+  font-weight: 200;
+  margin-bottom: 10px;
+  color: gray;
+}
 
+input[type="text"]:focus, input[type="number"]:focus {
+  border-color: #3498db;
+  box-shadow: inset 0px -1px -1px rgba(0, 0, 0, 0.1);
+}
 
+.dinero {
+  background-color: #ffffff00;
+  padding: 20px;
+  border-radius: 5px;
+}
 
+.dinero label {
+  display: block;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #333;
+}
 
+.dinero input[type="text"] {
+  font-size: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.dinero input[type="text"]:disabled {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.borrar-button {
+  cursor: pointer;
+}
+
+.listado table {
+  background-color: #d42929;
+  border-radius: 5px;
+  box-shadow: -1px -1px -1px rgba(0, 0, 0, 0.1);
+}
