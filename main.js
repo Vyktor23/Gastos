@@ -104,5 +104,3 @@ function mostrar_tarjeta() {
   
     mostrar_tarjeta();
   }
-
-
