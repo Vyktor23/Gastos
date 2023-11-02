@@ -1,75 +1,59 @@
-let presupuestos=[];
-let global=null;
+let presupuestos = [];
+let presupuestoInicial = null;
+let presupuestoRestante = null;
 
-function guardar(){
+
+function formatNumberWithCommas(number) {
+  return number.toLocaleString('es-ES');
+}
+
+function guardar() {
   let gasto = document.getElementById("gasto").value;
-  let cantidad = document.getElementById("cantidad").value;
+  let cantidad = parseFloat(document.getElementById("cantidad").value);
 
-  if(gasto=='')
-    swal('Error','el campo gasto está vacío.','warning')
-  else if(cantidad=='')
-    swal('Error','el campo cantidad está vacía.','warning')
-  else if(cantidad<1)
-    swal('Error','Ingrese una cantidad mayor a 0','error')
-  else if(!isNaN(gasto))
-    swal('Error','Ingrese solo letras en gasto.','error')
-  else if(isNaN(cantidad))
-    swal('Error','Iingrese solo números en cantidad.','error')
-  else {
-    swal('¡Excelente!','Tu gasto fue registrado correctamente','success');
-    gastos();
+  if (!presupuestoInicial) {
+    swal('Advertencia', 'Por favor, ingrese un presupuesto antes de agregar gastos.', 'warning');
+  } else if (gasto === '') {
+    swal('Error', 'El campo "Gasto" está vacío.', 'warning');
+  } else if (isNaN(cantidad) || cantidad <= 0) {
+    swal('Error', 'Ingrese una cantidad válida en "Cantidad" (número mayor a 0).', 'error');
+  } else if (cantidad>presupuestoRestante) {
+    swal('Error','La cantidad se excede al presupuesto restante','error');
+  } else{
+    presupuestos.push({
+      gastos: gasto,
+      valor: cantidad,
+    });
+
+    swal('¡Excelente!', 'Tu gasto fue registrado correctamente', 'success');
+
+    presupuestoRestante -= cantidad;
+    document.getElementById("restante").value = presupuestoRestante;
+    document.getElementById("gasto").value = "";
+    document.getElementById("cantidad").value = "";
+
+    document.getElementById("tarjetas").innerHTML = "";
+    mostrar_tarjeta();
+    cambiar_color();
+    boton();
   }
 }
 
 
-function verificar_presupuesto(){
-  let presupuesto = document.getElementById("presupuesto").value;
+function verificar_presupuesto() {
+  let presupuesto = parseFloat(document.getElementById("presupuesto").value);
 
-  if(presupuesto=='')
-  swal('Error','El campo presupuesto está vacío.','warning')
-else if (presupuesto<1)
-swal('Error','El presupuesto debe ser mayor a 0','error')
-else
-global=presupuesto
+  if (isNaN(presupuesto) || presupuesto <= 0) {
+    swal('Error', 'Ingrese un presupuesto válido (número mayor a 0).', 'error');
+  } else {
+    presupuestoInicial = presupuesto;
+    presupuestoRestante = presupuesto;
+
+    document.getElementById("presupuesto").value = formatNumberWithCommas(presupuesto);
+    document.getElementById("restante").value = formatNumberWithCommas(presupuestoRestante);
+  }
 }
 
-
-function gastos(){
-  let gasto = document.getElementById("gasto").value;
-  let cantidad = document.getElementById("cantidad").value;
-
-  presupuestos.push({
-    gastos:gasto,
-    valor: cantidad,
-  })
-
-  document.getElementById("tarjetas").innerHTML="";
-  mostrar_tarjeta()
-}
-
-// function mostrar_tarjeta() {
-//   presupuestos.forEach((item,index)=>{
-//     let tr = document.createElement('tr');
-//     let nombre = document.createElement('td');
-//     let valor = document.createElement('td');
-//     let borrar = document.createElement('td');
-//     let borrar_boton = document.createElement('button');
-
-//     borrar_boton.textContent = '❌';
-//     borrar_boton.addEventListener('click',()=>{
-//       borrar_tarjeta(index);
-//     })
-
-//     nombre.textContent = item.gastos;
-//     valor.textContent = item.valor;
-
-//     borrar.appendChild(borrar_boton);
-//     tr.appendChild(nombre);
-//     tr.appendChild(valor);
-//     tr.appendChild(borrar);
-
-//     document.getElementById('tarjetas').appendChild(tr);
-//   })}
 
 function mostrar_tarjeta() {
   presupuestos.forEach((item, index) => {
@@ -80,13 +64,13 @@ function mostrar_tarjeta() {
     let borrar_boton = document.createElement('button');
 
     borrar_boton.textContent = '❌';
-    borrar_boton.className = 'borrar-button'; // Agregar la clase 'borrar-button'
+    borrar_boton.className = 'borrar-button';
     borrar_boton.addEventListener('click', () => {
       borrar_tarjeta(index);
     });
 
     nombre.textContent = item.gastos;
-    valor.textContent = item.valor;
+    valor.textContent = formatNumberWithCommas(item.valor);
 
     borrar.appendChild(borrar_boton);
     tr.appendChild(nombre);
@@ -97,10 +81,37 @@ function mostrar_tarjeta() {
   });
 }
 
-  function borrar_tarjeta(index) {
-    presupuestos.splice(index, 1);
-  
-    document.getElementById('tarjetas').innerHTML = ""; // Cambiar 'tarjeta' a 'tarjetas'
-  
-    mostrar_tarjeta();
+function borrar_tarjeta(index) {
+  let cantidadEliminada = presupuestos[index].valor;
+  presupuestos.splice(index, 1);
+
+  presupuestoRestante += cantidadEliminada;
+
+  document.getElementById("restante").value = formatNumberWithCommas(presupuestoRestante);
+
+  document.getElementById("tarjetas").innerHTML = "";
+  mostrar_tarjeta();
+  cambiar_color();
+  boton();
+}
+
+
+function cambiar_color() {
+  let porcentaje  = (presupuestoRestante / presupuestoInicial) * 100;
+  let restante = document.getElementById('restante');
+
+  if (porcentaje < 20) {
+    restante.style.backgroundColor = 'rgba(220, 20, 20, 0.33)';
+  } else {
+    restante.style.backgroundColor = 'rgba(0, 255, 0, 0.33)';
   }
+}
+
+function boton() {
+  if (presupuestoRestante == 0){
+      document.getElementById('agregar').disabled = true;
+  }else {
+      document.getElementById('agregar').disabled = false;
+  }
+}
+
