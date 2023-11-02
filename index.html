@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <meta charset="UTF-8">
@@ -8,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro Gastos</title>
 </head>
+
 <body>
   <div class="contenedor_principal">
     <h1>Control de Gastos</h1>
@@ -18,7 +20,7 @@
         <input type="text" id="gasto" placeholder="Nombre Gasto" name="gasto"><br>
         <label for="cantidad">Cantidad:</label><br>
         <input type="number" id="cantidad" placeholder="Cantidad en $" name="cantidad"><br>
-        <input type="button" value="Agregar" onclick="guardar()">
+        <input type="button" value="Agregar" id="agregar" onclick="guardar()">
       </form>
       <div class="contenedor_secundario">
         <div class="dinero">
@@ -29,7 +31,8 @@
             </tbody>
           </table>
           <label for="presupuesto">Presupuesto:</label>
-          <input type="text" id="presupuesto" placeholder="$$$" name="presupuesto" onkeyup="if(event.keyCode===13) verificar_presupuesto()">
+          <input type="text" id="presupuesto" placeholder="$$$" name="presupuesto"
+            onkeyup="if(event.keyCode===13) verificar_presupuesto()">
           <label for="restante">Restante:</label>
           <input type="text" id="restante" placeholder="$$$" name="restante">
         </div>
@@ -37,4 +40,5 @@
     </div>
   </div>
 </body>
+
 </html>
